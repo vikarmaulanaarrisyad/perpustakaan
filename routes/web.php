@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\{
     DashboardController,
+    KategoriController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +31,12 @@ Route::group([
     Route::group([
         'middleware' => 'role:admin'
     ], function () {
-        // 
+        //Kategori
+        Route::get('/kategori/data',[KategoriController::class])->name('kategori.data');
+        Route::resource('/kategori', KategoriController::class);
     });
 
-    // Role Admin
+    // Role Siswa
     Route::group([
         'middleware' => 'role:siswa'
     ], function () {
